@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scary Baboon Token Demo</title>
+<style>
+body{
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+.box{
+    background:#1c1c1c;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    width:420px;
+    box-shadow:0 0 20px rgba(255,0,0,.2);
+}
+button{
+    padding:12px 24px;
+    font-size:16px;
+    cursor:pointer;
+}
+#token{
+    margin-top:20px;
+    word-break:break-all;
+    color:#6cff6c;
+    font-family:monospace;
+}
+.note{
+    margin-top:15px;
+    color:#aaa;
+    font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Scary Baboon Token Getter</h2>
+    <button onclick="showToken()">Generate</button>
+    <div id="token"></div>
+    <div class="note">IDFK</div>
+</div>
+
+<script>
+function randomString(length){
+    const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let out="";
+    for(let i=0;i<length;i++){
+        out+=chars[Math.floor(Math.random()*chars.length)];
+    }
+    return out;
+}
+
+function showToken(){
+    let token=localStorage.getItem("demo_scarybaboon_token");
+
+    if(!token){
+        token="SB-"+randomString(64);
+        localStorage.setItem("demo_scarybaboon_token",token);
+    }
+
+    document.getElementById("token").textContent=token;
+}
+</script>
+
+</body>
+</html>
